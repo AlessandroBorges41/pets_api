@@ -2,8 +2,9 @@
   "name": "pets_api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
+    "start": "nodemon --inspect api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/AlessandroBorges41/pets_api/issues"
   },
-  "homepage": "https://github.com/AlessandroBorges41/pets_api#readme"
+  "homepage": "https://github.com/AlessandroBorges41/pets_api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.3",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.6",
+    "sequelize": "^6.3.5"
+  }
 }
