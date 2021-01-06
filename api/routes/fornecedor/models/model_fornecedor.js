@@ -1,4 +1,6 @@
 const controllerFornecedor = require('../controllers/controller_fornecedor');
+const CampoInvalido = require('../../../erros/CampoInvalido');
+const DadosNaoFornecidos = require('../../../erros/DadosNaoFornecidos');
 
 class model_Fornecedor {
   //Fornecedor
@@ -55,7 +57,7 @@ class model_Fornecedor {
     })
 
     if(Object.keys(dadosParaAtualizacao).length === 0){
-        throw new Error('Não foram fornecidos dados para atualizar');
+        throw new DadosNaoFornecidos();
     }
     await controllerFornecedor.atualizar(this.id, dadosParaAtualizacao);
   }
@@ -71,7 +73,7 @@ class model_Fornecedor {
       const valor = this[campo]
 
       if(typeof valor !== 'string' || valor.length <= 0 ){
-        throw new Error(`O campo ${campo} está invalido`);
+        throw new CampoInvalido(campo);
       }
     })
 

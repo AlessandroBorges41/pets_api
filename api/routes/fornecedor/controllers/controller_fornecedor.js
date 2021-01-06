@@ -1,10 +1,12 @@
 const { removeAllListeners } = require('nodemon');
 const Modelo = require('../schemas/schema_Fornecedor');
+const NaoEncontrado = require('../../../erros/NaoEncontrados');
 
 //TabelaFornecedor
 module.exports = {
   list(){
-    return Modelo.findAll();
+    //A informação de raw: true retorna JavaScript puro
+    return Modelo.findAll({ raw: true});
   },
 
   inserir (fornecedor) {
@@ -12,12 +14,12 @@ module.exports = {
   },
 
   async buscarPorId (id) {
-    const fornecedor = Modelo.findOne({
+    const fornecedor = await Modelo.findOne({
       where:{id: id}
     });
 
     if(!fornecedor){
-      throw new Error('Fornecedor não encontrado');
+      throw new NaoEncontrado();
     }
     return fornecedor;
   },
