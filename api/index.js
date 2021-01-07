@@ -13,6 +13,7 @@ const { response, request } = require('express');
 const CampoInvalido = require('./erros/CampoInvalido');
 const DadosNaoFornecidos = require('./erros/DadosNaoFornecidos');
 const ValorNaoSuportado = require('../api/erros/ValorNaoSuportado');
+const SerializadorErro = require('./Serializador').SerializadorErro;
 
 //Declarando um Middleware:  middlewareType
 app.use((request, response, middlewareType)=>{
@@ -51,8 +52,16 @@ app.use((erro, request, response, middlewareError) =>{
       status = 406;
     }
 
-    response.status(status).json({'mensagem': erro.message, 'success': false, 'id': erro.idErro });
-   
+    const serializadoErro = new SerializadorErro(
+      response.getHeader('Content-Type')
+    )
+    
+    response.status(status)
+    response.send(serializadoErro.serializar({
+      mensagem: erro.message,
+      id: erro.idErro,
+      'success': false
+    }))
 });
 
 app.listen(port, () => {

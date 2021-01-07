@@ -43,7 +43,7 @@ rotas.get('/:id', async (request, response, middlewareError) => {
         await fornecedor.carregar()
         response.status(200)
         const serializador = new SerializadorFornecedor(
-            response.getHeader('Content-Type')
+            response.getHeader('Content-Type'), ['email', 'dataCriacao', 'dataAtualizacao', 'versao' ]
         );
         response.send(serializador.serializar(fornecedor))
     } catch (erro) {
