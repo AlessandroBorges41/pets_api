@@ -76,10 +76,7 @@ class model_Fornecedor {
         throw new CampoInvalido(campo);
       }
     })
-
-
   }
-
 }
 
 module.exports = model_Fornecedor;

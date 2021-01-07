@@ -34,6 +34,7 @@ app.use((request, response, middlewareType)=>{
 
 //chamando as rotas
 app.use('/api/fornecedor', router);
+app.use('/api/produtos', router);
 
 app.use((erro, request, response, middlewareError) =>{
     let status = 500;

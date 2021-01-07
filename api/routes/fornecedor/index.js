@@ -82,4 +82,7 @@ rotas.delete('/:id', async (request, response, middlewareError) => {
     }
 });
 
+const routeProdutos = require('./produtos')
+rotas.use('/:id/produtos', routeProdutos)
+
 module.exports = rotas;
